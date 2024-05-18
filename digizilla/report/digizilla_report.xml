@@ -1,0 +1,67 @@
+<!-- reports/digizilla_report.xml -->
+<odoo>
+    <report id="digizilla_report"
+            string="Digizilla Report"
+            model="digizilla"
+            report_type="qweb-pdf"
+            name="digizilla.report_digizilla"
+            file="digizilla.report_digizilla"/>
+
+    <template id="report_digizilla">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2><span t-field="doc.name"/></h2>
+                        <div class="row">
+                            <div class="col-6">
+                                <strong>Gender:</strong> <span t-field="doc.gender"/>
+                            </div>
+                            <div class="col-6">
+                                <strong>Country:</strong> <span t-field="doc.country_id.name"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <strong>Joining Date:</strong> <span t-field="doc.joining_date"/>
+                            </div>
+                            <div class="col-6">
+                                <strong>Company:</strong> <span t-field="doc.company_id.name"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <strong>Tags:</strong>
+                                <ul>
+                                    <li t-foreach="doc.tag_ids" t-as="tag">
+                                        <span t-field="tag.name"/>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-6">
+                                <strong>Customers:</strong>
+                                <ul>
+                                    <li t-foreach="doc.customer_ids" t-as="customer">
+                                        <span t-field="customer.name"/>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <strong>Notes:</strong>
+                                <p><span t-field="doc.notes"/></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <strong>Comments:</strong>
+                                <p><span t-field="doc.comments"/></p>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>
